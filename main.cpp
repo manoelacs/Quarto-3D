@@ -398,6 +398,170 @@ void draw_solid_cube(GLfloat size)
 
     glEnd();
 }
+void draw_bed()
+{
+    //bed
+    lighting(bed_no_mat,bed_ambient,bed_diffuse,bed_specular,bed_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+    glPushMatrix();
+    glTranslatef(24,-8,-21);
+    glScalef(12,3,6);
+    draw_solid_cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //head
+    lighting(bed_head_no_mat,bed_head_ambient,bed_head_diffuse,bed_head_specular,bed_head_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+    glPushMatrix();
+    glTranslatef(24,-6,-21);
+    glScalef(1.5,2.5,6);
+    draw_solid_cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+}
+void draw_shelf()
+{
+    lighting(shelf_no_mat,shelf_ambient,shelf_diffuse,shelf_specular,shelf_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[5]);
+    glPushMatrix();
+    glTranslatef(25,-8,-16);
+    glRotatef(90,0,0,1);
+    glScalef(3,5,3);
+    draw_solid_cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+void draw_table()
+{
+    //table legs
+    lighting(table_leg_no_mat,table_leg_ambient,table_leg_diffuse,table_leg_specular,table_leg_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[4]);
+    glPushMatrix();
+    glScalef(.5,5,.5);
+    glTranslatef(0,-1,10);
+    draw_solid_cube(1);
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glScalef(0.5,5,0.5);
+    glTranslatef(0, -1, 22);
+    draw_solid_cube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+    glScalef(0.5,5,0.5);
+    glTranslatef(5, -1, 10);
+    draw_solid_cube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+    glScalef(0.5,5,0.5);
+    glTranslatef(5, -1, 22);
+    draw_solid_cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //table top
+    lighting(table_top_no_mat,table_top_ambient,table_top_diffuse,table_top_specular,table_top_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[4]);
+    glPushMatrix();
+    glTranslatef(0,-2,8);
+    glScalef(6,0.5,9);
+    draw_solid_cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+}
+void draw_chair(float x, float z, float r)
+{
+    //chair legs
+    lighting(chair_leg_no_mat,chair_leg_ambient,chair_leg_diffuse,chair_leg_specular,chair_leg_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[5]);
+    glPushMatrix();
+    glTranslatef(-4+x, -6.5, 9.5+z);
+    glScalef(0.35,4,0.35);
+    draw_solid_cube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-4+x, -6.5, 6.5+z);
+    glScalef(0.35,4,0.35);
+    draw_solid_cube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-7+x, -6.5, 9.5+z);
+    glScalef(0.35,4,0.35);
+    draw_solid_cube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-7+x, -6.5, 6.5+z);
+    glScalef(0.35,4,0.35);
+    draw_solid_cube(1);
+    glPopMatrix();
+
+    //chair seat
+    lighting(chair_seat_no_mat,chair_seat_ambient,chair_seat_diffuse,chair_leg_specular,chair_seat_shiness);
+    glPushMatrix();
+    glTranslatef(-5.5+x, -4, 8+z);
+    glScalef(4,1.0,4);
+    draw_solid_cube(1);
+    glPopMatrix();
+
+    //chair top
+    if(r == 0)
+    {
+        lighting(chair_top_no_mat,chair_top_ambient,chair_top_diffuse,chair_seat_specular,chair_top_shiness);
+        glPushMatrix();
+        glTranslatef(-7.5+x, -2.5, 8+z);
+        glRotatef(90,0,0,1);
+        glScalef(4,0.3,3.8);
+        draw_solid_cube(1);
+        glPopMatrix();
+    }
+    else if(r==1)
+    {
+        lighting(chair_top_no_mat,chair_top_ambient,chair_top_diffuse,chair_seat_specular,chair_top_shiness);
+        glPushMatrix();
+        glTranslatef(-8.0+x+2.5, 3.5, 8+z+1.8);
+        glRotatef(90,1,0,0);
+        glScalef(4,0.3,3.8);
+        draw_solid_cube(1);
+        glPopMatrix();
+    }
+    else if(r==2)
+    {
+        lighting(chair_top_no_mat,chair_top_ambient,chair_top_diffuse,chair_seat_specular,chair_top_shiness);
+
+        glPushMatrix();
+        glTranslatef(-8.0+x+2.5, -2, 8+z-1.8);
+        glRotatef(90,1,0,0);
+        glScalef(4,0.3,3.8);
+        draw_solid_cube(1);
+        glPopMatrix();
+    }
+    else if(r==3)
+    {
+        lighting(chair_top_no_mat,chair_top_ambient,chair_top_diffuse,chair_seat_specular,chair_top_shiness);
+        glPushMatrix();
+        glTranslatef(-7.5+x+4, 3.5, 8+z);
+        glRotatef(90,0,0,1);
+        glScalef(4,0.3,3.8);
+        draw_solid_cube(1);
+        glPopMatrix();
+    }
+    glDisable(GL_TEXTURE_2D);
+}
 void draw_door()
 {
 
@@ -411,7 +575,7 @@ void draw_door()
     glRotatef(-door_angle,0,1,0);
     glTranslatef(0, 0, -5);
     glScalef(1, 30, 10);
-   /// glColor3f(0.4f, 0.0f, 0.0f);
+    glColor3f(0.4f, 0.0f, 0.0f);
     draw_solid_cube(1);
 
     glPopMatrix();
@@ -432,12 +596,23 @@ void draw_window()
     glRotatef(door_angle, 0,1,0);
     glTranslatef(-5, 0, 0);
     glScalef(10, 12, 0.2);
-    //glColor3f(0.4f, 0.0f, 0.0f);
+    glColor3f(0.4f, 0.0f, 0.0f);
     draw_solid_cube(1);
 
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 
+}
+void draw_paiting(){
+    glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture[7]); /// texture parede / tijolinho
+        glPushMatrix();
+        glTranslatef(0,8,24.5);
+        glScalef(15,18,0.2);
+       // glColor3d(0, 0, 6); // white
+        draw_solid_cube(0.5);
+        glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
 }
 void draw_wall() //paredes
 {
@@ -487,7 +662,7 @@ void draw_wall() //paredes
 
 
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[1]); /// texture parede / tijolinho
+    glBindTexture(GL_TEXTURE_2D, texture[7]); /// texture parede / tijolinho
     glPushMatrix();
     glTranslatef(25,10,0);
     glScalef(0.2,40,50);
@@ -532,7 +707,7 @@ void draw_wall() //paredes
     glPushMatrix();
     glTranslatef(0,10,25);
     glScalef(50,40,0.2);
-     glColor3d(0.0, 0.0, 0.0); // black
+     glColor3d(1.0, 1.0, 1.0); // white
     draw_solid_cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -545,7 +720,7 @@ void draw_ceiling() // teto
     glPushMatrix();
     glTranslatef(0,25,0);
     glScalef(50,0.2,50);
-    glColor3d(1.0, 3.0, 0.0);
+    glColor3d(1.0, 0, 1.0);
     draw_solid_cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -585,19 +760,20 @@ void display(void)
                0, 1, 0);
    // gluLookAt(0, 0, -90, 0, 0, 0, 0, 1, 0);
     //gluLookAt(eye_x,eye_y,eye_z,center_x,center_y,center_z,0,1,0);
-    /*draw_table(); //4 cadeiras
-    draw_chair(0.0,0,0);
-    draw_chair(12.0,0,3);
-    draw_chair(5.0,5.8,1);
-    draw_chair(6.0,-5.8,2);
+    draw_table(); //4 cadeiras
+    //draw_chair(0.0,0,0);
+    //draw_chair(12.0,0,3);
+    //draw_chair(5.0,5.8,1);
+   draw_chair(6.0,-5.8,2);
 
-    draw_shelf();*/
+    draw_shelf();
+    draw_paiting();
     draw_window();
     draw_door();
     draw_wall();
     draw_floor();
     draw_ceiling();
-    //draw_bed();
+    draw_bed();
 
     //lighting in scene
 
@@ -761,6 +937,9 @@ int main(int argc, char *argv[])
     loadTexture((char*)"C:\\Workspace\\Computação Gráfica\\quarto3D\\assets\\texturas\\floor.bmp", 3); /// textura piso
     loadTexture((char*)"C:\\Workspace\\Computação Gráfica\\quarto3D\\assets\\texturas\\table.bmp", 4); ///textura de madeira
     loadTexture((char*)"C:\\Workspace\\Computação Gráfica\\quarto3D\\assets\\texturas\\shelf.bmp", 5); /// outra madeira
+    loadTexture((char*)"C:\\Workspace\\Computação Gráfica\\quarto3D\\assets\\texturas\\tabaco.bmp", 6); /// outra madeira
+    loadTexture((char*)"C:\\Workspace\\Computação Gráfica\\quarto3D\\assets\\texturas\\comamorvangogh.bmp", 7); /// outra madeira
+    loadTexture((char*)"C:\\Workspace\\Computação Gráfica\\quarto3D\\assets\\texturas\\van-gogh-amendoeira-flor-d.bmp", 8); /// outra madeira
 
     glutDisplayFunc(display);
     glutKeyboardFunc(handleKeyPressed);
