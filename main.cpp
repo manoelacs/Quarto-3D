@@ -405,8 +405,8 @@ void draw_bed()
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[0]);
     glPushMatrix();
-    glTranslatef(24,-8,-21);
-    glScalef(12,3,6);
+    glTranslatef(24.3,-8,-21);
+    glScalef(12,3,10);
     draw_solid_cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -416,8 +416,8 @@ void draw_bed()
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[0]);
     glPushMatrix();
-    glTranslatef(24,-6,-21);
-    glScalef(1.5,2.5,6);
+    glTranslatef(24.3,-6,-21);
+    glScalef(2,2.5,10);
     draw_solid_cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -429,9 +429,10 @@ void draw_shelf()
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[5]);
     glPushMatrix();
-    glTranslatef(25,-8,-16);
+    glTranslatef(25,-8,-14);
     glRotatef(90,0,0,1);
     glScalef(3,5,3);
+    glColor3f(0.4, 5.6, 4.3);
     draw_solid_cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -439,31 +440,32 @@ void draw_shelf()
 void draw_table()
 {
     //table legs
+    float h = -0.6;
     lighting(table_leg_no_mat,table_leg_ambient,table_leg_diffuse,table_leg_specular,table_leg_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[4]);
     glPushMatrix();
-    glScalef(.5,5,.5);
-    glTranslatef(0,-1,10);
+    glScalef(.5,9,.5);
+    glTranslatef(-18,-0.6,40);
     draw_solid_cube(1);
     glPopMatrix();
 
 
     glPushMatrix();
-    glScalef(0.5,5,0.5);
-    glTranslatef(0, -1, 22);
+    glScalef(0.5,9,0.5);
+    glTranslatef(-18, h, 47);
     draw_solid_cube(1);
     glPopMatrix();
 
     glPushMatrix();
-    glScalef(0.5,5,0.5);
-    glTranslatef(5, -1, 10);
+    glScalef(0.5,9,0.5);
+    glTranslatef(15,h , 47);
     draw_solid_cube(1);
     glPopMatrix();
 
     glPushMatrix();
-    glScalef(0.5,5,0.5);
-    glTranslatef(5, -1, 22);
+    glScalef(0.5,9,0.5);
+    glTranslatef(15,h, 40);
     draw_solid_cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -473,8 +475,8 @@ void draw_table()
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[4]);
     glPushMatrix();
-    glTranslatef(0,-2,8);
-    glScalef(6,0.5,9);
+    glTranslatef(0,-1,22);
+    glScalef(20,0.5,7);
     draw_solid_cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -485,7 +487,7 @@ void draw_chair(float x, float z, float r)
     //chair legs
     lighting(chair_leg_no_mat,chair_leg_ambient,chair_leg_diffuse,chair_leg_specular,chair_leg_shiness);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[5]);
+    glBindTexture(GL_TEXTURE_2D, texture[6]);
     glPushMatrix();
     glTranslatef(-4+x, -6.5, 9.5+z);
     glScalef(0.35,4,0.35);
@@ -546,7 +548,7 @@ void draw_chair(float x, float z, float r)
         glPushMatrix();
         glTranslatef(-8.0+x+2.5, -2, 8+z-1.8);
         glRotatef(90,1,0,0);
-        glScalef(4,0.3,3.8);
+        glScalef(4,0.3,7);
         draw_solid_cube(1);
         glPopMatrix();
     }
@@ -764,7 +766,7 @@ void display(void)
     //draw_chair(0.0,0,0);
     //draw_chair(12.0,0,3);
     //draw_chair(5.0,5.8,1);
-   draw_chair(6.0,-5.8,2);
+   draw_chair(6.0,10,2);
 
     draw_shelf();
     draw_paiting();
