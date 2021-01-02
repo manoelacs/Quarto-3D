@@ -60,6 +60,8 @@ GLfloat light_ambient[]  = {1.0, 1.0, 1.0, 1.0};
 GLfloat light_diffuse[]  = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat light_position[] = { 2.0, 25.0, 3.0, 1.0 };
+GLfloat spot_direction[] = { -1.0, -1.0, 0.0 };
+
 
 GLfloat table_leg_no_mat[] = {0.0,0.0,0.0,1.0};
 GLfloat table_leg_ambient[] = {1.000, 0.388, 0.278, 1.0};
@@ -437,6 +439,113 @@ void draw_shelf()
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 }
+void draw_shelf2()
+{
+    lighting(shelf_no_mat,shelf_ambient,shelf_diffuse,shelf_specular,shelf_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[5]);
+    glPushMatrix();
+    glTranslatef(-15,-7,23);
+    glRotatef(90,0,0,1);
+    glScalef(8,5,6);
+    glColor3f(0.4, 5.6, 4.3);
+    draw_solid_cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+void draw_luminaria(){
+
+
+        glPushMatrix();
+            glTranslatef(6,-0.4,22);
+            glScalef(2,0.7,2);
+            glColor3f(1, 1,0);
+            draw_solid_cube(1);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(6,2,22);
+            glScalef(0.2,4,0.2);
+            glColor3f(1, 1,0);
+            draw_solid_cube(1);
+        glPopMatrix();
+
+        glPushMatrix();
+        glTranslatef(5.6,4.5,20);
+        glRotated(-90,0, 0, 1 );
+           glRotated(-50,0, 1, 0 );
+
+            glutSolidCone(1, 3,6, 6);
+        glPopMatrix();
+
+
+         glPushMatrix();
+
+            glTranslatef(6,4,22);
+            glRotated(30,0, 1, 0 );
+            glRotated(30, 1, 0, 0);
+
+            glScalef(0.2,0.2,4);
+            glColor3f(1, 1,0);
+            draw_solid_cube(1);
+        glPopMatrix();
+
+}
+void drawPetals() {
+glPushMatrix();
+
+        for (int i = 0; i < 4; i++) {
+            glTranslatef(-15,2,22);
+            glScalef(10,1,10);
+            glColor3f(1, 0,0);
+            glBegin(GL_TRIANGLES);
+                glVertex2d(0, 0);
+                glVertex2d(-10 / 2, -10);
+                glVertex2d(10 / 2, -10);
+            glEnd();
+
+            //glRotated(90, 0, 0, 1);
+        }
+    glPopMatrix();
+}
+void draw_ventilador(){
+
+glPushMatrix();
+    glPushMatrix();
+        glTranslatef(-15,2,22);
+        glScalef(2,1,2);
+        glColor3f(1, 0,0);
+        draw_solid_cube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(-15,-0.6,22);
+        glScalef(.4,6,.4);
+        glColor3f(1, 0,0);
+        draw_solid_cube(1);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(-15,-3,22);
+        //glRotatef(90,0,0,1);
+        glScalef(3,0.7,3);
+        glColor3f(1, 0,0);
+        draw_solid_cube(1);
+    glPopMatrix();
+
+glPopMatrix();
+
+}
+void draw_prancha(){
+lighting(table_top_no_mat,table_top_ambient,table_top_diffuse,table_top_specular,table_top_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[4]);
+    glPushMatrix();
+    glTranslatef(0,13,22);
+    glScalef(20,0.5,3);
+    draw_solid_cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
 void draw_table()
 {
     //table legs
@@ -673,7 +782,7 @@ void draw_wall() //paredes
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 
-
+/*
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[1]); /// texture parede / tijolinho
         glPushMatrix();
@@ -699,7 +808,7 @@ void draw_wall() //paredes
             glColor3d(0.0, 0.0, 1.0); // blue
             draw_solid_cube(0.5);
         glPopMatrix();
-    glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);*/
 
 
 
@@ -766,9 +875,13 @@ void display(void)
     //draw_chair(0.0,0,0);
     //draw_chair(12.0,0,3);
     //draw_chair(5.0,5.8,1);
+    drawPetals();
+    draw_luminaria();
+    draw_ventilador();
    draw_chair(6.0,10,2);
-
+    draw_prancha();
     draw_shelf();
+    draw_shelf2();
     draw_paiting();
     draw_window();
     draw_door();
@@ -914,6 +1027,7 @@ const GLfloat mat_diffuse[]    = { 0.8f, 0.8f, 0.8f, 1.0f };
 const GLfloat mat_specular[]   = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat high_shininess[] = { 100.0f };*/
 
+
 /* Program entry point */
 
 int main(int argc, char *argv[])
@@ -930,6 +1044,7 @@ int main(int argc, char *argv[])
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
 
     string path = (char*)"C:\\Workspace\\Computação Gráfica\\quarto3D\\assets\\texturas";
     glGenTextures(10,texture);
