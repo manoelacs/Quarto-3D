@@ -400,6 +400,7 @@ void draw_solid_cube(GLfloat size)
 
     glEnd();
 }
+
 void draw_bed()
 {
     //bed
@@ -407,7 +408,7 @@ void draw_bed()
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[0]);
     glPushMatrix();
-    glTranslatef(24.3,-8,-21);
+    glTranslatef(16,-8,-20);
     glScalef(12,3,10);
     draw_solid_cube(1);
     glPopMatrix();
@@ -418,7 +419,7 @@ void draw_bed()
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[0]);
     glPushMatrix();
-    glTranslatef(24.3,-6,-21);
+    glTranslatef(21,-6,-20);
     glScalef(2,2.5,10);
     draw_solid_cube(1);
     glPopMatrix();
@@ -431,9 +432,9 @@ void draw_shelf()
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[5]);
     glPushMatrix();
-    glTranslatef(25,-8,-14);
+    glTranslatef(21,-8,-12);
     glRotatef(90,0,0,1);
-    glScalef(3,5,3);
+    glScalef(3,3,3);
     glColor3f(0.4, 5.6, 4.3);
     draw_solid_cube(1);
     glPopMatrix();
@@ -507,12 +508,133 @@ glPushMatrix();
         }
     glPopMatrix();
 }
-void draw_ventilador(){
-
+void draw_abajur(){
+    //glTranslatef(25,-8,-14);
 glPushMatrix();
     glPushMatrix();
+       // glTranslatef(-15,2,22);
+        glTranslatef(21,-2,-12);
+        glScalef(2,3,2);
+        glColor3f(1, 0.4,0.1);
+        draw_solid_cube(1);
+    glPopMatrix();
+
+    /// cabo
+    glPushMatrix();
+        //glTranslatef(-15,-0.6,22);
+        glTranslatef(21,-6,-12);
+        glScalef(.4,6,.4);
+        glColor3f(1, 0.4,0.1);
+        draw_solid_cube(1);
+    glPopMatrix();
+
+    ///base
+    glPushMatrix();
+    glTranslatef(21,-6,-12);
+        glScalef(3,0.5,3);
+        glColor3f(1, 0.4,0.1);
+        draw_solid_cube(1);
+    glPopMatrix();
+
+glPopMatrix();
+}
+void draw_solid_pa()
+{
+    glBegin(GL_TRIANGLES);
+        glVertex3f(-7, 20, 22);
+        glVertex3f(7, 20, 22);
+        glVertex3f(0, 26, 22);
+
+        glVertex3f(-7, 20, 22);
+        glVertex3f(0, 0, 22);
+        glVertex3f(7, 20, 22);
+
+  glEnd();
+
+}
+void draw_rodaCentro(){
+
+    glBegin(GL_POLYGON);
+        glColor3f(0, 0, 1);
+        glVertex3f(-1, 0 , 22);
+        glVertex3f(-0.7, -0.7, 22);
+        glVertex3f(-1, 0, 22);
+
+        glVertex3f(0.7, -0.7, 22 );
+        glVertex3f(1, 0, 22);
+        glVertex3f(0.7, 0.7, 22);
+
+        glVertex3f(1, 0, 22 );
+        glVertex3f(-0.7, 0.7, 22);
+
+
+  glEnd();
+}
+void draw_helices()
+{
+    glPushMatrix();
+    glScaled(2, 3, 0);
+    draw_rodaCentro();
+    glPopMatrix();
+    glPushMatrix();
+        draw_solid_pa();
+    glPopMatrix();
+     glPushMatrix();
+      glRotated(-72, 0,0, 1);
+        draw_solid_pa();
+    glPopMatrix();
+
+    glPushMatrix();
+
+    glRotated(72, 0,0, 1);
+        draw_solid_pa();
+    glPopMatrix();
+
+    glRotated(-144, 0,0, 1);
+        draw_solid_pa();
+    glPopMatrix();
+    glRotated(144, 0,0, 1);
+        draw_solid_pa();
+    glPopMatrix();
+
+    glRotated(360, 0,0, 1);
+        draw_solid_pa();
+    glPopMatrix();
+
+}
+
+void draw_ventilador(const double a){
+
+glPushMatrix();
+
+   ////pas da hélice
+    glPushMatrix();
+        glTranslatef(-15,1.7,21);
+        glRotated(a, 0, 0, 1);
+        glScalef(1,8,.2);
+        glColor3f(1, 1,0);
+        draw_solid_cube(1);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(-15,1.7,21);
+        glRotated(a, 0, 0, 1);
+        glRotated(45, 0, 0, 1);
+        glScalef(1,8,.2);
+        glColor3f(1, 1,0);
+        draw_solid_cube(1);
+    glPopMatrix();
+    glPushMatrix();
+        glTranslatef(-15,1.7,21);
+        glRotated(a, 0, 0, 1);
+        glRotated(90, 0, 0, 1);
+        glScalef(1,8,.2);
+        glColor3f(1, 1,0);
+        draw_solid_cube(1);
+    glPopMatrix();
+
+    glPushMatrix();
         glTranslatef(-15,2,22);
-        glScalef(2,1,2);
+        glScalef(1.5,1,2);
         glColor3f(1, 0,0);
         draw_solid_cube(1);
     glPopMatrix();
@@ -521,6 +643,7 @@ glPushMatrix();
         glTranslatef(-15,-0.6,22);
         glScalef(.4,6,.4);
         glColor3f(1, 0,0);
+        //draw_solid_helice(1);
         draw_solid_cube(1);
     glPopMatrix();
 
@@ -731,32 +854,32 @@ void draw_wall() //paredes
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[1]); /// texture parede / tijolinho
         glPushMatrix();
-            glTranslatef(15,10,-25);
-            glScalef(40,80,0.2);
+            glTranslatef(15,7.5,-25);
+            glScalef(40,70,0.2);
             glColor3d(1.0, 0.0, 0.0); // red
             draw_solid_cube(0.5);
         glPopMatrix();
 
        /// glTranslatef(-25,10,0);
        glPushMatrix();
-             glTranslatef(-15,10,-25);
+             glTranslatef(-15,7.5,-25);
             // glScalef(50,40,0.2)
-            glScalef(40,80,0.2);
+            glScalef(40,70,0.2);
             glColor3d(1.0, 0.0, 0.0); // red
             draw_solid_cube(0.5);
         glPopMatrix();
 
         glPushMatrix();
        /// glTranslatef(-25,10,0);
-            glTranslatef(0,25,-25);
-            glScalef(20,44,0.2);
+            glTranslatef(0,19.5,-25);
+            glScalef(20,23.5,0.2);
            glColor3d(1.0, 0.0, 0.0); // red
             draw_solid_cube(0.5);
         glPopMatrix();
          glPushMatrix();
        /// glTranslatef(-25,10,0);
-            glTranslatef(0,-6,-25);
-            glScalef(20,32,0.2);
+            glTranslatef(0,-3.8,-25);
+            glScalef(20,24,0.2);
            glColor3d(1.0, 0.0, 0.0); // red
             draw_solid_cube(0.5);
         glPopMatrix();
@@ -775,8 +898,8 @@ void draw_wall() //paredes
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[7]); /// texture parede / tijolinho
     glPushMatrix();
-    glTranslatef(25,10,0);
-    glScalef(0.2,40,50);
+    glTranslatef(25,7.5,0);
+    glScalef(0.2,35,50);
      glColor3d(0.0, 1.0, 0.0); // green
     draw_solid_cube(1);
     glPopMatrix();
@@ -816,8 +939,8 @@ void draw_wall() //paredes
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[1]); /// texture parede / tijolinho
     glPushMatrix();
-    glTranslatef(0,10,25);
-    glScalef(50,40,0.2);
+    glTranslatef(0,7.5,25);
+    glScalef(50,35,0.2);
      glColor3d(1.0, 1.0, 1.0); // white
     draw_solid_cube(1);
     glPopMatrix();
@@ -851,7 +974,10 @@ void draw_floor() //piso
     glDisable(GL_TEXTURE_2D);
 }
 void display(void)
+
 {
+    const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
+    const double a = t*90.0;
     //glPushMatrix();
     glRotatef ((GLfloat) eixoy, 0.0, 1.0, 0.0);
     glRotatef ((GLfloat) eixox, 1.0, 0.0, 0.0);
@@ -875,10 +1001,12 @@ void display(void)
     //draw_chair(0.0,0,0);
     //draw_chair(12.0,0,3);
     //draw_chair(5.0,5.8,1);
+
+    draw_abajur();
     drawPetals();
     draw_luminaria();
-    draw_ventilador();
-   draw_chair(6.0,10,2);
+    draw_ventilador(a);
+    draw_chair(6.0,10,2);
     draw_prancha();
     draw_shelf();
     draw_shelf2();
