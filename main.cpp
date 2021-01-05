@@ -283,7 +283,7 @@ void draw_solid_cube(GLfloat size)
     y8 = size/2;
     z8 = size/2;
 
-    float n1_x = 0, n1_y = -1, n1_z = 0; //face that faces towards bottom
+    float n1_x = 0, n1_y = -1, n1_z = 0; //bottom
     float n2_x = 0, n2_y = 1, n2_z = 0; //up
     float n3_x = 0, n3_y = 0, n3_z = -1; //front
     float n4_x = 0, n4_y = 0, n4_z = 1; //back
