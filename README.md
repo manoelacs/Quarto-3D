@@ -11,11 +11,40 @@ Modelar o interior do Quarto: paredes, teto, piso, etc.;
 - [x] Aplicar Iluminação (especular e difusa) a modelagem;
 - [x] Aplicar mapeamento de textura em 5 objetos (no mínimo);
 
+## Ferramentas de Execução:
+- Windows 10
+- CodeBlocks v.16.01
+- OpenGL (freeglut) v.3.0.0.1
 
-- Se apoiem nos materiais: 
+## Teclas de movimentação:
+- s/S : trás
+- d/D : direita
+- a/A : esquerda
+- w/W : frente
+
+## Porta e janela
+- o/O : abre a porta e janela
+- c/C : fecha porta e janela
+
+## Movimentar Câmera:
+- y : move câmera pra cima
+- Y : move câmera pra baixo
+
+## Rotação: 
+- u/U : rotaciona cmera no sentido horário
+- h/H : rotaciona câmera no sentido anti-horário
+
+## Iluminação:
+- 1 : ativa/desativa iluminação ambiente
+- 2 : ativa/desativa iluminação difusa
+- 3 : ativa/desativa iluminação especular
+
+
+- Referências: 
   - http://www.ceset.unicamp.br/~magic/opengl/transformacoes.html
   - http://lab.bachem-it.com/opengl/redbook/
   - http://www.glprogramming.com/red/ 
   - use o livro OpenGL Superbible que passei para vcs na sala de aula; 
     - http://lab.bachem-it.com/opengl/redbook/
     - http://www.glprogramming.com/red/ 
+  -
