@@ -1,7 +1,7 @@
 # Quarto-3D
 ## Requisitos:
 Modelar o interior do Quarto: paredes, teto, piso, etc.; 
-- [ ] O quarto deverá ter no mínimo 5 objetos, além da cama, mesa, cadeira, ventilador e quadro; 
+- [X] O quarto deverá ter no mínimo 5 objetos, além da cama, mesa, cadeira, ventilador e quadro; 
 - [x] 1 Porta: a porta do Quarto deverá ser aberta e fechada usando o teclado 
 - [x] 1 Janela: a janela deverá ser aberta e fechada usando o teclado;
 - [x] O quarto deverá ter 1 Quadro de Vincent van Gogh; 
