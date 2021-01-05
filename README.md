@@ -39,7 +39,7 @@ Modelar o interior do Quarto: paredes, teto, piso, etc.;
 - 2 : ativa/desativa iluminação difusa
 - 3 : ativa/desativa iluminação especular
 ## Demo:
-![]()
+![](https://github.com/ManuSayure/Quarto-3D/blob/master/assets/demo/Screenshot_5-ANIMATION.gif)
 
 - Referências: 
   - http://www.ceset.unicamp.br/~magic/opengl/transformacoes.html
