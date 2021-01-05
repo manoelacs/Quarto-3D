@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1609786920 source:c:\workspace\computação gráfica\quarto3d\main.cpp
+1609861217 source:c:\workspace\computação gráfica\quarto3d\main.cpp
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<stdlib.h>

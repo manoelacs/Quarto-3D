@@ -1,16 +1,4 @@
-/*
- * GLUT Shapes Demo
- *
- * Written by Nigel Stewart November 2003
- *
- * This program is test harness for the sphere, cone
- * and torus shapes in GLUT.
- *
- * Spinning wireframe and smooth shaded shapes are
- * displayed until the ESC or q key is pressed.  The
- * number of geometry stacks and slices can be adjusted
- * using the + and - keys.
- */
+
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
@@ -491,7 +479,7 @@ void draw_luminaria(){
         glPopMatrix();
 
 }
-void drawPetals() {
+void drawPetals(){
 glPushMatrix();
 
         for (int i = 0; i < 4; i++) {
@@ -538,8 +526,7 @@ glPushMatrix();
 
 glPopMatrix();
 }
-void draw_solid_pa()
-{
+void draw_solid_pa(){
     glBegin(GL_TRIANGLES);
         glVertex3f(-7, 20, 22);
         glVertex3f(7, 20, 22);
@@ -658,16 +645,149 @@ glPushMatrix();
 glPopMatrix();
 
 }
+void draw_box( float x, float y, float z, GLfloat color[3] ){
+     glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture[4]);
+        glPushMatrix();
+            glColor3f(color[0], color[1], color[2]);
+            glTranslatef(x, y + 3 ,23);
+            glScalef(3,0.5,2.6);
+            draw_solid_cube(1);
+        glPopMatrix();
+        glPushMatrix();
+            glColor3f(color[0], color[1], color[2]);
+            glTranslatef(x, y + 1.5 ,23);
+            glScalef(3,3,2.5);
+            draw_solid_cube(1);
+        glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+void draw_book(float x, float y, float z){
+    lighting(table_top_no_mat,table_top_ambient,table_top_diffuse,table_top_specular,table_top_shiness);
+    //glEnable(GL_TEXTURE_2D);
+   // glBindTexture(GL_TEXTURE_2D, texture[4]);
+        glPushMatrix();
+            glColor3f (0, 0.5, 0.5);
+            glTranslatef(x - 0.5, y + 1.5 ,23);
+            glScalef(0.4,3,1.5);
+            draw_solid_cube(1);
+        glPopMatrix();
+
+        glPushMatrix();
+            glColor3f (0, 0.5, 0);
+            glTranslatef(x-1, y + 1.5 ,23);
+            glScalef(0.4,3,1.5);
+            draw_solid_cube(1);
+        glPopMatrix();
+        glPushMatrix();
+            glColor3f (0.8, 0, 0.5);
+            glTranslatef(x-1.6, y + 1.5 ,23);
+            glScalef(0.4,3,1.5);
+            draw_solid_cube(1);
+        glPopMatrix();
+    // glDisable(GL_TEXTURE_2D);
+
+}
 void draw_prancha(){
-lighting(table_top_no_mat,table_top_ambient,table_top_diffuse,table_top_specular,table_top_shiness);
+
+    float colorbox1[3] =  {1, 0.5,0.5};
+    float colorbox2[3] =  {1, 1,0.5};
+
+    float colorbook1[3] =  {};
+    float colorbook2[3] =  {};
+    float colorbook3[3] =  {};
+
+    lighting(table_top_no_mat,table_top_ambient,table_top_diffuse,table_top_specular,table_top_shiness);
+    glPushMatrix();
+        draw_book(-5, 13,23);
+    glPopMatrix();
+
+
+
+
+
+
+    ///draw box
+    glPushMatrix();
+        draw_box(5 ,13 , 23, colorbox1);
+        draw_box(0, 13, 23, colorbox2);
+    glPopMatrix();
+
+
+   /// draw prancha
+    glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture[4]);
+        glPushMatrix();
+            glColor3f(0.4, 5.6, 4.3);
+            glTranslatef(0,13,23);
+            glScalef(20,0.5,3);
+            draw_solid_cube(1);
+        glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+void draw_prateleiras(float y){
+    lighting(table_top_no_mat,table_top_ambient,table_top_diffuse,table_top_specular,table_top_shiness);
+    glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture[4]);
+        glPushMatrix();
+            glColor3f(0.4, 5.6, 4.3);
+            glTranslatef(19,y,23);
+            glScalef(8,0.5,3);
+            draw_solid_cube(1);
+        glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+};
+void draw_barras(){
+    lighting(table_top_no_mat,table_top_ambient,table_top_diffuse,table_top_specular,table_top_shiness);
+     //table legs
+    float h = -0.6;
+    float xr = 15;
+    float xl = 23;
+    float zf = 24 ;
+    float zb = 22;
+    float scala[] = {0.4,20,0.4};
+
+
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[4]);
-    glPushMatrix();
-    glTranslatef(0,13,22);
-    glScalef(20,0.5,3);
-    draw_solid_cube(1);
-    glPopMatrix();
+        glPushMatrix();
+            glTranslatef(xl, h, zf);
+            glScalef(scala[0],scala[1], scala[2]);
+            draw_solid_cube(1);
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslatef(xl,h , zb);
+            glScalef(scala[0],scala[1], scala[2]);
+            draw_solid_cube(1);
+        glPopMatrix();
+        glPushMatrix();
+            glTranslatef(xr,h , zb);
+            glScalef(scala[0],scala[1], scala[2]);
+            draw_solid_cube(1);
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslatef(xr,h, zf);
+            glScalef(scala[0],scala[1], scala[2]);
+            draw_solid_cube(1);
+        glPopMatrix();
+
     glDisable(GL_TEXTURE_2D);
+}
+void draw_estante(){
+
+    /// draw prancha
+
+    draw_book(19,  4.7,  23);
+    draw_book(19,  0.3,  23);
+    draw_book(20,  0.3,  23);
+    draw_barras();
+    draw_prateleiras(9);
+    draw_prateleiras(4.5);
+    draw_prateleiras(0);
+    draw_prateleiras(-4.5);
+
 }
 void draw_table()
 {
@@ -838,8 +958,9 @@ void draw_window()
 
 }
 void draw_paiting(){
+     lighting(wall_no_mat,wall_ambient,wall_diffuse,wall_specular,wall_shiness);
     glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, texture[7]); /// texture parede / tijolinho
+        glBindTexture(GL_TEXTURE_2D, texture[8]); /// texture quadro
         glPushMatrix();
         glTranslatef(0,8,24.5);
         glScalef(15,18,0.2);
@@ -856,7 +977,7 @@ void draw_wall() //paredes
         glPushMatrix();
             glTranslatef(15,7.5,-25);
             glScalef(40,70,0.2);
-            glColor3d(1.0, 0.0, 0.0); // red
+            glColor3d(0.0, 0.0, 1.0); // blue
             draw_solid_cube(0.5);
         glPopMatrix();
 
@@ -865,7 +986,7 @@ void draw_wall() //paredes
              glTranslatef(-15,7.5,-25);
             // glScalef(50,40,0.2)
             glScalef(40,70,0.2);
-            glColor3d(1.0, 0.0, 0.0); // red
+            glColor3d(0.0, 0.0, 1.0); // blue
             draw_solid_cube(0.5);
         glPopMatrix();
 
@@ -873,18 +994,18 @@ void draw_wall() //paredes
        /// glTranslatef(-25,10,0);
             glTranslatef(0,19.5,-25);
             glScalef(20,23.5,0.2);
-           glColor3d(1.0, 0.0, 0.0); // red
+           glColor3d(0.0, 0.0, 1.0); // blue
             draw_solid_cube(0.5);
         glPopMatrix();
          glPushMatrix();
        /// glTranslatef(-25,10,0);
             glTranslatef(0,-3.8,-25);
             glScalef(20,24,0.2);
-           glColor3d(1.0, 0.0, 0.0); // red
+           glColor3d(0.0, 0.0, 1.0); // blue
             draw_solid_cube(0.5);
         glPopMatrix();
-    glEnable(GL_TEXTURE_2D);
-   /* glPushMatrix();
+    /*glEnable(GL_TEXTURE_2D);
+    glPushMatrix();
     glTranslatef(0,10,-25);
     glScalef(50,40,0.2);
     glColor3d(1.0, 0.0, 0.0); // red
@@ -900,12 +1021,12 @@ void draw_wall() //paredes
     glPushMatrix();
     glTranslatef(25,7.5,0);
     glScalef(0.2,35,50);
-     glColor3d(0.0, 1.0, 0.0); // green
+     glColor3d(1.0, 1.0, 1.0); // white
     draw_solid_cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 
-/*
+
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[1]); /// texture parede / tijolinho
         glPushMatrix();
@@ -931,7 +1052,7 @@ void draw_wall() //paredes
             glColor3d(0.0, 0.0, 1.0); // blue
             draw_solid_cube(0.5);
         glPopMatrix();
-    glEnable(GL_TEXTURE_2D);*/
+    glEnable(GL_TEXTURE_2D);
 
 
 
@@ -978,7 +1099,7 @@ void display(void)
 {
     const double t = glutGet(GLUT_ELAPSED_TIME) / 1000.0;
     const double a = t*90.0;
-    //glPushMatrix();
+
     glRotatef ((GLfloat) eixoy, 0.0, 1.0, 0.0);
     glRotatef ((GLfloat) eixox, 1.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
@@ -998,12 +1119,9 @@ void display(void)
    // gluLookAt(0, 0, -90, 0, 0, 0, 0, 1, 0);
     //gluLookAt(eye_x,eye_y,eye_z,center_x,center_y,center_z,0,1,0);
     draw_table(); //4 cadeiras
-    //draw_chair(0.0,0,0);
-    //draw_chair(12.0,0,3);
-    //draw_chair(5.0,5.8,1);
-
+    draw_estante();
     draw_abajur();
-    drawPetals();
+    //drawPetals();
     draw_luminaria();
     draw_ventilador(a);
     draw_chair(6.0,10,2);
@@ -1102,10 +1220,12 @@ void handleKeyPressed(unsigned char key, int x, int y)
         camera_y_angle-=.15;
         break;
     case 'o':
+    case 'O':
         if(door_angle <= 108.0f) door_angle += 2.0f;
         glutPostRedisplay();
         break;
     case 'c':
+    case 'C':
         if(door_angle >= 2.0f) door_angle -= 2.0f;
         glutPostRedisplay();
         break;
