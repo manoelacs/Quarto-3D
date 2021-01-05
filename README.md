@@ -47,4 +47,5 @@ Modelar o interior do Quarto: paredes, teto, piso, etc.;
   - use o livro OpenGL Superbible que passei para vcs na sala de aula; 
     - http://lab.bachem-it.com/opengl/redbook/
     - http://www.glprogramming.com/red/ 
-  -
+  - https://openglbook.com/chapter-3-index-buffer-objects-and-primitive-types.html
+  - https://github.com/PialKanti/3D-Room
